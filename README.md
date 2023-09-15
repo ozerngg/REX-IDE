@@ -1,4 +1,4 @@
-# BricksIDE
+# REX IDE
 ![YouTube Channel Subscribers](https://img.shields.io/youtube/channel/subscribers/UCxrzbtC5y-5kGx7gMlFRG6A?style=social)
 ![Twitter URL](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Ftwitter.com%2Fpicobricks%3Flang%3Dbg)
 ![GitHub followers](https://img.shields.io/github/followers/Robotistan?style=social)
