@@ -29,7 +29,8 @@ You may obtain a copy of the License at
  See the License for the specific language governing permissions and
  limitations under the License.
 
-![Logo](https://github.com/Robotistan/BricksIDE/assets/112697142/b89545c6-508d-4de4-b33f-e88599584196)
+![Logo](https://github.com/ozerngg/REX-IDE/assets/112697142/3cd5ce54-c68d-452a-b054-db37615ff9e8)
 
-## Note
-If you have any questions, you can contact technical support at ``support@picobricks.com`` or [Bricks IDE Bug Reports](https://ide.picobricks.com/index.html).
+
+
+
