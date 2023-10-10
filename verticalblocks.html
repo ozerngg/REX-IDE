@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
  <head>
-    <title>Rex Blocks</title>
+    <title>REX Blocks</title>
     <link rel="icon" type="image/x-icon" href="images/x8.png">
 
     <meta charset="utf-8">
@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="css/dropdown.css">
     <link rel="stylesheet" href="css/bottompanel.css">
     <link rel="stylesheet" href="css/introjs.min.css">
-    <link rel="stylesheet" href="css/w3.css">
+    <link rel="stylesheet" href="../css/w3.css">
 
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
@@ -31,7 +31,7 @@
     <script src="js/bottompanel.js"></script>
     <script src="js/intro.min.js"></script>
     <script src="js/firmware-intro.js"></script>
-
+    
     <script src="js/blockly/blockly_uncompressed.js"></script>
 
     <script src="js/blockly/generators/arduino.js"></script>
@@ -88,7 +88,7 @@
 
     <div class="container-fluid">
 
-        <img class="savingButton" id="btSaving" />
+        <img class="savingButton" id="btSaving"/>
         <div class="w3-light-blue progressBar" id="progressBarDiv">
             <div class="w3-container w3-green w3-center" style="width:1%; height:20px" id="progressBar">0%</div>
         </div>
@@ -190,8 +190,7 @@
                                 <div class="row" style="background-color: white;" id="bottomRow">
                                     <div class="col-md-12">
                                         <div style="font-size: 12px; display: block; padding-left: 10px; background-color: #fff;" class="row">
-                                            <textarea id="txtConsole" name="txtConsole" rows="10" cols="50" class="consoleTextArea" readonly>
-                            </textarea>
+                                            <textarea id="txtConsole" name="txtConsole" rows="10" cols="50" class="consoleTextArea" readonly></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -272,7 +271,7 @@
 
                     <div class="row" style="text-align: left; align-items: left; margin-bottom: 2rem">
                         <div class="col-md-12">
-                            to firmware update hold down the <b>BOOTSEL</b> button while plugging the board into USB
+                            Perform the firmware update while the REX Main Board is connected to the device via USB cable and not connected to the REX IDE.
                         </div>
                     </div>
 
@@ -340,13 +339,17 @@
             <block type="print">
                 <value name="WriteValue">
                     <shadow type="text">
-                        <field name="TEXT">REX Blocks</field>
+                        <field name="TEXT">Rex Blocks</field>
                     </shadow>
                 </value>
             </block>
+            
+            <block type="variable_convert">
+                <value name="VALUE"></value>
+            </block>
         </category>
 
-        <category name="Rex" id="rexsensors" colour="#162d4a" secondaryColour="#7a38f1" iconclass="blocklyTreeIconCustom fas fa-xmark fa-2x">
+        <category name="REX" id="rexsensors" colour="#162d4a" secondaryColour="#7a38f1" iconclass="blocklyTreeIconCustom fas fa-xmark fa-2x">
 
             <block type="playBuzzer">
                 <value name="FREQUENCY">
@@ -408,10 +411,6 @@
 
             <block type="controls_if">
                 <mutation else="1"></mutation>
-            </block>
-
-            <block type="controls_switch">
-                <mutation case="1"></mutation>
             </block>
 
             <block type="logic_operation">
@@ -504,7 +503,7 @@
 
             <block type="resettimer">
             </block>
-            
+
             <block type="while_times">
                 <value name="TIMES">
                     <shadow type="math_number">
@@ -590,28 +589,35 @@
                     </shadow>
                 </value>
             </block>
+
             <block type="math_rescale">
-                <value name="RESCALE">
+                <value name="INPUT">
+                    <shadow type="math_number">
+                        <field name="NUM">8</field>
+                    </shadow>
+                </value>
+                <value name="INMIN">
                     <shadow type="math_number">
                         <field name="NUM">0</field>
                     </shadow>
                 </value>
-                <value name="FIRST">
+                <value name="INMAX">
                     <shadow type="math_number">
                         <field name="NUM">0</field>
                     </shadow>
                 </value>
-                <value name="SECOND">
-                    <shadow type="math_number">
-                        <field name="NUM">0</field>
-                    </shadow>
+                <value name="OUTMIN">
+                  <shadow type="math_number">
+                      <field name="NUM">0</field>
+                  </shadow>
                 </value>
-                <value name="THIRD">
-                    <shadow type="math_number">
-                        <field name="NUM">0</field>
-                    </shadow>
+                <value name="OUTMAX">
+                  <shadow type="math_number">
+                      <field name="NUM">0</field>
+                  </shadow>
                 </value>
             </block>
+
             <block type="math_random_int">
                 <value name="FROM">
                     <shadow type="math_number">
@@ -633,9 +639,30 @@
                 <field name="STRING">String</field>
             </block>
             <block type="list_combined">
-                <value name="STR1"></value>
-                <value name="STR2"></value>
+                <value name="STR1">
+                    <shadow type="text">
+                        <field name="TEXT">Rex </field>
+                    </shadow>
+                </value>
+                <value name="STR2">
+                    <shadow type="text">
+                        <field name="TEXT">Blocks</field>
+                    </shadow>
+                </value>
             </block>
+            <block type="split">
+                <value name="VALUE1">
+                    <shadow type="text">
+                        <field name="TEXT">Rex, Blocks</field>
+                    </shadow>
+                </value>
+                <value name="VALUE2">
+                    <shadow type="text">
+                        <field name="TEXT">,</field>
+                    </shadow>
+                </value>
+            </block>
+
             <block type="lists_create_with">
                 <mutation items="0"></mutation>
             </block>
@@ -651,7 +678,6 @@
             </block>
             <block type="lists_length"></block>
             <block type="lists_isEmpty"></block>
-
             <block type="get_list_item">
                 <value name="INDEX">
                     <shadow type="math_number">
