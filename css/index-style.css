@@ -27,7 +27,7 @@ body{
 }
 
 .navbar{
-    height: 8vh;
+    height:53px;
     width: 100%;
     background-color: #161342 ;
     color: whitesmoke;
@@ -51,16 +51,17 @@ ul{
   
   li a {
     display: block;
-    color: white ;
+    color: white !important;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-weight: normal;
   }
 
-  /* Change the link color to #111 (black) on hover */
   li a:hover {
-    color: #eea827;
+    color: #eea827 !important;
+    background-color: #161342  !important;
+
   }
 
 .banner{
@@ -77,8 +78,8 @@ ul{
     margin-top: 40px;
     background-image:url("../img/background.png");
     background-size:contain;
-    margin-top: calc(100vh - 95vh); /* Adjust this line */
-    overflow: hidden; /* Prevent overflow */
+    margin-top: calc(100vh - 95vh); 
+    overflow: hidden;
 
     
 }
@@ -110,22 +111,18 @@ transform: rotate(36deg);
   50% {left:-20%}
   100% {left:10%}
 }
-
-
 .gif-container {
-  flex: 1; /* Allow the GIF container to take up available space */
+  flex: 1;
   display: flex;
-  justify-content: center; /* Push the GIF to the right */
-  order: 2; /* Set the order to 2 to move it to the right */
-  margin-top: -16vh; /* Adjust this value to move the GIF up */
+  justify-content: center; 
+  order: 2;
+   
 }
 
 .gif-container img {
-  max-width: 172%; /* Adjust the size as needed */
   height: auto;
 top:0;
-transform: rotate(216deg);
-margin-right: -9vh !important; /* Adjust this value to move the GIF to the right */
+transform: rotate(1deg);
 
 }
 
@@ -133,16 +130,15 @@ margin-right: -9vh !important; /* Adjust this value to move the GIF to the right
   transform: rotate(-3deg);
   background-color: #161342;
   border-radius: 37px;
-  padding: 25px; /* Increase the padding for more space */
-  z-index: 55255;
-  max-width: 88%;
+  padding: 25px;
+  max-width: 90% !important;
   display: flex;
   align-items: center;
   flex: 1;
-  order: 1; /* Set the order to 1 (default is 0) to move it to the left */
+  order: 1;
   margin-left: 15% !important;
-  margin-right: 2% !important;
-  font-size: 1.2em; /* Increase the font size */
+  margin-right: -8% !important;
+  font-size: 1.2em; 
 }
 
 
@@ -254,8 +250,8 @@ font-weight: 2;
 
 @media (max-width: 768px) {
     .exp .mainboard p {
-        margin: 0; /* Remove the margin */
-        padding: 0 15px; /* Add some padding for better readability */
+        margin: 0; 
+        padding: 0 15px;
     }
 }
 
@@ -347,15 +343,20 @@ font-weight: 2;
     width: 35px;
     height: 35px;
     border-radius: 50%;
-    background-color: #ffc26e;
-    color: white;
+    background-color: white;
+    color:#e3a62b;
     border: 1px solid white;
     z-index: 44444444444444;
     box-shadow: 2px 2px 18px #4d4d4d;
     cursor: pointer;
-   border: 2px solid #115c5c;
-  }
+    border:2px solid #e3a62b;
 
+  }
+.goTop:hover{
+  color: white;
+  background-color: #ffc26e;
+  border: 2px solid white;
+}
   .goBottom {
     display: flex;
     justify-content: center;
@@ -426,17 +427,17 @@ font-weight: 2;
       flex-direction: column;
     }
     .text-0 {
-      margin: 5vh; /* Remove margin */
-      padding: 30px;
+      margin: 5vh !important;
+      padding: 30px !important;
 
     }
   }
 
   @media only screen and (min-width: 600px) {
     .text-0 {
-      max-width: 100%; /* Make the text container full width */
-      margin: 22px; /* Remove margin */
-      padding: 10px; /* Add some padding for better readability */
+      max-width: 100%; 
+      margin: 22px; 
+      padding: 25px; 
     }
     .logo-0 .i {
       display: none;
@@ -563,4 +564,102 @@ font-weight: 2;
 }
 #z2:hover{
   color:#eea827 !important;
+}
+
+@media only screen and (max-width: 480px){
+  .gif-container {
+    margin-top:-2vh; 
+  }
+  
+  .gif-container img {
+    max-width: 44%; 
+  margin-right: 22vh !important; 
+  
+  }
+  
+}@media only screen and (min-width: 481px) and (max-width: 600px){
+  .gif-container {
+    margin-top: -7vh; 
+  }
+  
+  .gif-container img {
+    max-width: 22%; 
+  margin-right: -91vh !important; 
+  
+  }
+  
+}
+
+@media only screen and (min-width: 600px) and (max-width: 768px){
+  .gif-container {
+    margin-top: 28vh; 
+  }
+  
+  .gif-container img {
+    max-width: 73%; 
+  margin-right: -7vh !important; 
+  
+  }
+  
+}
+
+@media only screen and (min-width: 768px)and (max-width: 991px){
+  .gif-container {
+    margin-top: 15vh; 
+  }
+  
+  .gif-container img {
+    max-width: 68%; 
+  margin-right: -15vh !important; 
+  
+  }
+  
+}
+@media only screen and (min-width: 992px) and (max-width: 1199px){
+  .gif-container {
+    margin-top: 15vh; 
+  }
+  
+  .gif-container img {
+    max-width: 70%; 
+  margin-right: -9vh !important; 
+  
+  }
+  
+}
+@media only screen and (min-width: 1200px) and (max-width: 1350px){
+  .gif-container {
+    margin-top: 15vh; 
+  }
+  
+  .gif-container img {
+    max-width: 60%; 
+  margin-right: -9vh !important;
+  }
+  
+}
+@media only screen and (min-width: 1350px) and (max-width: 1919px){
+  .gif-container {
+    margin-top: 15vh; 
+  }
+  
+  .gif-container img {
+    max-width: 74%; 
+  margin-right: -9vh !important;
+  }
+  
+}
+@media only screen and (min-width: 1920px) {
+  .gif-container {
+    margin-top: 12vh; 
+  }
+  
+  .gif-container img {
+    max-width: 85%; 
+  margin-right: -9vh !important;
+  }
+}
+
+html,body{
+  overscroll-behavior: auto !important;
 }
