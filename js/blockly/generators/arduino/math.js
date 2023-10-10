@@ -346,16 +346,18 @@ Blockly.Arduino['math_modulo'] = function(block) {
 };
 Blockly.Arduino['math_rescale'] = function (block) {
     Blockly.Arduino.imports_['import_math'] = 'import math';
-    var argument0 = Blockly.Arduino.valueToCode(block, 'RESCALE',
+    var input = Blockly.Arduino.valueToCode(block, 'INPUT',
         Blockly.Arduino.ORDER_NONE) || '0';
-    var argument1 = Blockly.Arduino.valueToCode(block, 'FIRST',
+    var inmin = Blockly.Arduino.valueToCode(block, 'INMIN',
         Blockly.Arduino.ORDER_NONE) || '0';
-    var argument2 = Blockly.Arduino.valueToCode(block, 'SECOND',
+    var inmax = Blockly.Arduino.valueToCode(block, 'INMAX',
         Blockly.Arduino.ORDER_NONE) || '0';
-    var argument3 = Blockly.Arduino.valueToCode(block, 'THIRD',
+    var outmin = Blockly.Arduino.valueToCode(block, 'OUTMIN',
         Blockly.Arduino.ORDER_NONE) || '0';
+    var outmax = Blockly.Arduino.valueToCode(block, 'OUTMAX',
+      Blockly.Arduino.ORDER_NONE) || '0';
 
-    var code = 'round(((( ' + argument0 + ' ) + ( ' + argument1 + ' )) * ( ' + argument2 + ' )) / ( ' + argument3 + ' )) ';
+    var code = 'round( '+ input +' - '+ inmin +' ) * ( '+ outmax +' - '+ outmin +' ) / ( '+ inmax +' - '+ inmin +' ) + '+ outmin;
     return [code, Blockly.Arduino.ORDER_NONE];
 };
 Blockly.Arduino['math_constrain'] = function(block) {

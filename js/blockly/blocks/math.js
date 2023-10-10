@@ -446,26 +446,31 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
   },
   {
     "type": "math_rescale",
-    "message0": "rescale ( %1 %2 from %3 to %4 )",
+    "message0": "rescale %1 from ( %2 , %3) to ( %4 , %5 )",
     "args0": [
       {
         "type": "input_value",
-        "name": "RESCALE",
+        "name": "INPUT",
         "check": "Number"
       },
       {
         "type": "input_value",
-        "name": "FIRST",
+        "name": "INMIN",
         "check": "Number"
       },
       {
         "type": "input_value",
-        "name": "SECOND",
+        "name": "INMAX",
         "check": "Number"
       },
       {
         "type": "input_value",
-        "name": "THIRD",
+        "name": "OUTMIN",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "OUTMAX",
         "check": "Number"
       },
     ],

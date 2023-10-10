@@ -62,7 +62,7 @@ function Upload_HCSR04_Library()
   {
     showProgressPanel();
     $.get('python/hcsr04Lib.txt', function(data) {
-      saveCode(data, "hc-sr04.py");
+      saveCode(data, "hcsr04.py");
     });
 
   }
@@ -178,7 +178,7 @@ async function SaveProject()
     const fileHandle = await window.self.showSaveFilePicker({
                                       suggestedName: 'RexProject.pb',
                                       types: [{
-                                        description: 'rexblocks',
+                                        description: 'picobricks',
                                         accept: {
                                           'text/plain': ['.pb'],
                                         },

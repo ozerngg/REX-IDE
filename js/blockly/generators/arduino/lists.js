@@ -382,3 +382,13 @@ Blockly.Arduino['get_list_item'] = function(block) {
   var code = variable + '[' + index + ']';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
+
+Blockly.Arduino['split'] = function(block) {
+  var value1 = Blockly.Arduino.valueToCode(block, 'VALUE1' , Blockly.Arduino.ORDER_NONE) || '0';
+  var value2 = Blockly.Arduino.valueToCode(block, 'VALUE2' , Blockly.Arduino.ORDER_NONE) || '0';
+  var code = '';
+
+  code = value1 +'.split(' + value2 + ')';
+
+  return [code, Blockly.Arduino.ORDER_NONE];
+}

@@ -33,6 +33,11 @@ Blockly.Python['lists_string'] = function (block) {
     return [code, Blockly.Python.ORDER_NONE];
 };
 
+Blockly.Python['split'] = function (block) {
+  var code = block.getFieldValue('VALUE1') + 'Split, by' + block.getFieldValue('VALUE2') ;
+  return [code, Blockly.Python.ORDER_NONE];
+};
+
 Blockly.Python['list_combined'] = function (block) {
     var argument0 = Blockly.Python.valueToCode(block, 'STR1',
         Blockly.Python.ORDER_NONE) || '0';

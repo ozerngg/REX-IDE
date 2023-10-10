@@ -38,27 +38,33 @@
 <body>
     
     
-    <ul id="nav">
-        <li><a href="#home">Homepage</a></li>
-        <li class="dropdown" id="documents-dropdown">
-            <a onclick="toggleDropdown()">Documents <i class="fa fa-caret-down"></i></a>
-            <ul class="dropdown-menu" id="dropdown-menu">
-                <!-- Add the dropdown content here -->
-                <li><a href="https://github.com/Robotistan/REX-8in1-V2" id="z1" style="color:#ccc;">Github</a></li>
-                <li><a href="https://rex-rdt.readthedocs.io/en/latest/" id="z2" style="color:#ccc;">Read the Docs</a></li>
-                <!-- Add more submenu items as needed -->
-            </ul>
-        </li>
-        <li><a href="https://shop.robotistan.com/">Buy</a></li>
-        <li><a href="https://shop.robotistan.com/pages/contact-us">Contact</a></li>
-    </ul>
+    <nav class="navbar">
+        <div class="logo-0"> 
+            <div class="i" onclick="showNavBar()">
+                <i class="fa fa-bars" aria-hidden="true"></i>   
+            </div>  
+            <a href="./../index.html">     <img src="./../img/logo.png" alt="rexlogo" class="logo"></a> 
+        </div>   
+        <ul id="nav">
+            <li><a href="./../index.html">Homepage</a></li>
+            <li class="dropdown" id="documents-dropdown">
+                <a onclick="toggleDropdown()">Documents <i class="fa fa-caret-down"></i></a>
+                <ul class="dropdown-menu" id="dropdown-menu">
+                    <li><a href="https://github.com/selimgayretli/REXBlocks" id="z1" style="color:white;"><i class="fa fa-github "></i> Github</a></li>
+                    <li><a href="https://rex-rdt.readthedocs.io/en/latest/" id="z2" style="color:white;"><i class="fa fa-file"></i>&nbsp; Read the Docs</a></li>
+                </ul>
+            </li>
+            <li><a href="https://shop.robotistan.com/">Buy</a></li>
+            <li><a href="https://shop.robotistan.com/pages/contact-us">Contact</a></li>
+        </ul>
+    </nav>
     <div id="flipbookContainer" style="margin-top: 5px;width:100%;justify-content:center; display:flex;align-items: center;" >
         </div>
-        <footer>
-            <div class="footer-container">
-                <p class="footer-text">Copyright © 2023 Robotistan. REX IDE is a brand of Robotistan. All Rights Reserved. </p>
-              </div>
-        </footer>    <script src="./../js/index.js"></script>
+    <footer>
+        <div class="footer-container">
+            <p>Copyright © 2023 Robotistan. REX 8in1 Robot Kit is a brand of Robotistan. All Rights Reserved. </p>
+          </div>
+    </footer>     <script src="./../js/index.js"></script>
  
 </body>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

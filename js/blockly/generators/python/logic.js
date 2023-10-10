@@ -66,40 +66,6 @@ Blockly.Python['controls_if'] = function(block) {
 
 Blockly.Python['controls_ifelse'] = Blockly.Python['controls_if'];
 
-Blockly.Python['controls_switch'] = function (block) {
-    var n = 0;
-    var code = '', branchCode, conditionCode;
-    if (Blockly.Python.STATEMENT_PREFIX) {
-        // Automatic prefix insertion is switched off for this block.  Add manually.
-        code += Blockly.Python.injectId(Blockly.Python.STATEMENT_PREFIX, block);
-    }
-    do {
-        conditionCode = Blockly.Python.valueToCode(block, 'SWITCH' + n,
-            Blockly.Python.ORDER_NONE) || 'False';
-        branchCode = Blockly.Python.statementToCode(block, 'DO' + n) ||
-            Blockly.Python.PASS;
-        if (Blockly.Python.STATEMENT_SUFFIX) {
-            branchCode = Blockly.Python.prefixLines(
-                Blockly.Python.injectId(Blockly.Python.STATEMENT_SUFFIX, block),
-                Blockly.Python.INDENT) + branchCode;
-        }
-        code += (n == 0 ? 'switch ' : 'case ') + conditionCode + ':\n' + branchCode;
-        ++n;
-    } while (block.getInput('SWITCH' + n));
-
-    if (block.getInput('DEFAULT') || Blockly.Python.STATEMENT_SUFFIX) {
-        branchCode = Blockly.Python.statementToCode(block, 'DEFAULT') ||
-            Blockly.Python.PASS;
-        if (Blockly.Python.STATEMENT_SUFFIX) {
-            branchCode = Blockly.Python.prefixLines(
-                Blockly.Python.injectId(Blockly.Python.STATEMENT_SUFFIX, block),
-                Blockly.Python.INDENT) + branchCode;
-        }
-        code += 'default:\n' + branchCode;
-    }
-    return code;
-};
-
 Blockly.Python['logic_compare'] = function(block) {
   // Comparison operator.
   var OPERATORS = {

@@ -36,20 +36,6 @@ Blockly.Arduino['Robotistan_Start'] = function(block) {
   return code;
 }
 
-Blockly.Arduino['clearScreen'] = function(block) {
-
-    var code = 'oled.fill(0)\n';
-
-    return code;
-};
-
-Blockly.Arduino['showScreen'] = function(block) {
-
-    var code = 'oled.show()\n';
-
-    return code;
-};
-
 Blockly.Arduino['print'] = function(block) {
 
     var writeValue =  Blockly.Arduino.valueToCode(block, 'WriteValue', Blockly.Arduino.ORDER_NONE);
@@ -163,33 +149,42 @@ Blockly.Arduino['DirectionSpeed'] = function (block) {
     var direction = block.getFieldValue('Direction');
     var speed = Blockly.Arduino.valueToCode(block, 'SPEED', Blockly.Arduino.ORDER_NONE) || '0';
     var code = '';
+    
+    var A1pin = Motor_A1_pin;
+    var A2pin = Motor_A2_pin;
+    var B1pin = Motor_B1_pin;
+    var B2pin = Motor_B2_pin;
+    var C1pin = Motor_C1_pin;
+    var C2pin = Motor_C2_pin;
+    var D1pin = Motor_D1_pin;
+    var D2pin = Motor_D2_pin;
 
     Blockly.Arduino.imports_['import_Pin'] = 'from machine import Pin';
     Blockly.Arduino.imports_['import_ADC'] = 'from machine import ADC';
     Blockly.Arduino.imports_['import_PWM'] = 'from machine import PWM';
 
     Blockly.Arduino.definitions_['define_direction_motorA'] = '#motorA\n' +
-                                                              'motor_A1 = PWM(Pin(15))\n' +
+                                                              'motor_A1 = PWM(Pin('+ A1pin +'))\n' +
                                                               'motor_A1.duty_u16(0)\n' +
-                                                              'motor_A2 = PWM(Pin(23))\n' +
+                                                              'motor_A2 = PWM(Pin('+ A2pin +'))\n' +
                                                               'motor_A2.duty_u16(0)\n\n';
 
     Blockly.Arduino.definitions_['define_direction_motorB'] = '#motorB\n' +
-                                                              'motor_B1 = PWM(Pin(32))\n' +
+                                                              'motor_B1 = PWM(Pin('+ B1pin +'))\n' +
                                                               'motor_B1.duty_u16(0)\n' +
-                                                              'motor_B2 = PWM(Pin(33))\n' +
+                                                              'motor_B2 = PWM(Pin('+ B2pin +'))\n' +
                                                               'motor_B2.duty_u16(0)\n\n';
 
     Blockly.Arduino.definitions_['define_direction_motorC'] = '#motorC\n' +
-                                                              'motor_C1 = PWM(Pin(5))\n' +
+                                                              'motor_C1 = PWM(Pin('+ C1pin +'))\n' +
                                                               'motor_C1.duty_u16(0)\n' +
-                                                              'motor_C2 = PWM(Pin(4))\n' +
+                                                              'motor_C2 = PWM(Pin('+ C2pin +'))\n' +
                                                               'motor_C2.duty_u16(0)\n\n';
 
     Blockly.Arduino.definitions_['define_direction_motorD'] = '#motorD\n' +
-                                                              'motor_D1 = PWM(Pin(27))\n' +
+                                                              'motor_D1 = PWM(Pin('+ D1pin +'))\n' +
                                                               'motor_D1.duty_u16(0)\n' +
-                                                              'motor_D2 = PWM(Pin(14))\n' +
+                                                              'motor_D2 = PWM(Pin('+ D2pin +'))\n' +
                                                               'motor_D2.duty_u16(0)\n\n';
 
     if (direction == "forward") {
@@ -280,9 +275,17 @@ Blockly.Arduino['stopMotors'] = function (block) {
 Blockly.Arduino['trackingState'] = function (block) {
     var value = block.getFieldValue('VALUE');
     var code = '';
+    var A0pin = IR_A0_pin;
+    var A1pin = IR_A1_pin;
 
     Blockly.Arduino.imports_['import_machine'] = 'import machine';
+    Blockly.Arduino.imports_['import_Pin'] = 'from machine import Pin';
+    Blockly.Arduino.imports_['import_ADC'] = 'from machine import ADC';
 
+    Blockly.Arduino.definitions_['define_stackingState'] = 'rightSensor = ADC(Pin('+A1pin+'))\n'+
+                                                           'leftSensor = ADC(Pin('+A0pin+'))\n'+
+                                                           'THRESHOLD = 50000';
+    
     if (value == "forward") {
         code = 'leftSensor.read_u16() >= THRESHOLD and rightSensor.read_u16() >= THRESHOLD'
     }
@@ -293,7 +296,7 @@ Blockly.Arduino['trackingState'] = function (block) {
         code = 'leftSensor.read_u16() > THRESHOLD and rightSensor.read_u16() < THRESHOLD'
     }
     else if (value == "backward") {
-        code = 'leftSensor.read_u16() < THRESHOLD and rightSensor.read_u16() < THRESHOLD and directionStt != STOP'
+        code = 'leftSensor.read_u16() < THRESHOLD and rightSensor.read_u16() < THRESHOLD'
     }
 
     return [code, Blockly.Arduino.ORDER_NONE];
@@ -302,6 +305,8 @@ Blockly.Arduino['trackingState'] = function (block) {
 Blockly.Arduino['trackingSensor'] = function (block) {
     var value = block.getFieldValue('VALUE');
     var code = '';
+    var A0pin = IR_A0_pin;
+    var A1pin = IR_A1_pin;
 
     Blockly.Arduino.imports_['import_machine'] = 'import machine';
     Blockly.Arduino.imports_['import_Pin'] = 'from machine import Pin';
@@ -309,13 +314,13 @@ Blockly.Arduino['trackingSensor'] = function (block) {
 
     if (value == 'left') {
         Blockly.Arduino.definitions_['define_tracking_sensor1'] =
-            'leftSensor = ADC(Pin(34))\n' +
-            'leftSensor.read_u16()\n'
+           'leftSensor = ADC(Pin('+ A0pin +'))\n';
+        code = 'leftSensor.read_u16()';
     }
-    else {
+    else if (value == 'right') {
         Blockly.Arduino.definitions_['define_tracking_sensor2'] =
-            'rightSensor = ADC(Pin(35))\n' +
-            'rightSensor.read_u16()\n'
+           'rightSensor = ADC(Pin('+ A1pin +'))\n';
+        code = 'rightSensor.read_u16()';
     }
     return [code, Blockly.Arduino.ORDER_NONE];
 };
@@ -324,10 +329,14 @@ Blockly.Arduino['axisAcceleration'] = function (block) {
 
     var value = block.getFieldValue('VALUE');
     var code = '';
+    var SDApin = I2C_SDA_pin;
+    var SCLpin = I2C_SCL_pin;
 
     Blockly.Arduino.imports_['import_MPU6050'] = 'import mpu6050';
+    Blockly.Arduino.imports_['import_I2C'] = 'from machine import I2C';
+    Blockly.Arduino.imports_['import_Pin'] = 'from machine import Pin';
 
-    Blockly.Arduino.definitions_['define_axis'] = 'i2c = I2C(scl=Pin(22), sda=Pin(21))\n' +
+    Blockly.Arduino.definitions_['define_axis'] = 'i2c = I2C(scl=Pin('+ SCLpin +'), sda=Pin('+ SDApin +'))\n' +
         '#initializing the I2C method for ESP32\n' +
         'mpu = mpu6050.accel(i2c)\n';
 
@@ -355,11 +364,14 @@ Blockly.Arduino['pinControl'] = function (block) {
 
 Blockly.Arduino['readDistance'] = function (block) {
     var meter = block.getFieldValue('VALUE');
+    var code = '';
+    var trigPin = TrigPin;
+    var echoPin = EchoPin;
 
     Blockly.Arduino.imports_['import_time_pulse_us'] = 'from machine import time_pulse_us';
     Blockly.Arduino.imports_['import_HCSR04'] = 'from hcsr04 import HCSR04';
 
-    Blockly.Arduino.definitions_['define_distance'] = 'sensor = HCSR04(trigger_pin=17, echo_pin=16, echo_timeout_us=10000)';
+    Blockly.Arduino.definitions_['define_distance'] = 'sensor = HCSR04(trigger_pin='+ trigPin +', echo_pin='+ echoPin +', echo_timeout_us=10000)';
 
     var code = 'sensor.distance_'+ meter +'()';
 
@@ -372,19 +384,23 @@ Blockly.Arduino['servoMotor'] = function(block) {
     var angle =  Blockly.Arduino.valueToCode(block, 'ANGLE', Blockly.Arduino.ORDER_NONE) || '0';
     var code = "";
     var pin = 0;
+    var servoM1 = ServoPin1;
+    var servoM2 = ServoPin2;
+    var servoM3 = ServoPin3;
+    var servoM4 = ServoPin4;
 
     if(motor == "1")
-        pin = ServoPin1;
+        pin = servoM1;
     else if(motor == "2")
-        pin = ServoPin2;
+        pin = servoM2;
     else if(motor == "3")
-        pin = ServoPin3;
+        pin = servoM3;
     else
-        pin = ServoPin4;
+        pin = servoM4;
 
     Blockly.Arduino.imports_['import_Pin'] = 'from machine import Pin';
     Blockly.Arduino.imports_['import_PWM'] = 'from machine import PWM';
-     Blockly.Arduino.imports_['import_fabs'] = 'from math import fabs';
+    Blockly.Arduino.imports_['import_fabs'] = 'from math import fabs';
 
     Blockly.Arduino.definitions_['define_servo1' + motor] = 'pwm_' + motor + ' = PWM(Pin(' + pin + '))';
     Blockly.Arduino.definitions_['define_servo2' + motor] = 'pwm_' + motor + '.freq(50)';
@@ -399,29 +415,98 @@ Blockly.Arduino['servoMotor'] = function(block) {
 
     return code;
 };
-
 Blockly.Arduino['dcMotor'] = function(block) {
 
     var motor = block.getFieldValue('MOTOR');
     var speed =  Blockly.Arduino.valueToCode(block, 'SPEED', Blockly.Arduino.ORDER_NONE) || '0';
-
+    var value = block.getFieldValue('VALUE');
     var code = "";
-    var pin = 0;
-
-    if(motor == "1")
-        pin = MotorPin1;
-    else
-        pin = MotorPin2;
+    var pin1 = 0;
+    var pin2 = 0;
+    
+    var A1 = Motor_A1_pin;
+    var A2 = Motor_A2_pin;
+    var B1 = Motor_B1_pin;
+    var B2 = Motor_B2_pin;
+    var C1 = Motor_C1_pin;
+    var C2 = Motor_C2_pin;
+    var D1 = Motor_D1_pin;
+    var D2 = Motor_D2_pin;
 
     Blockly.Arduino.imports_['import_PWM'] = 'from machine import PWM';
     Blockly.Arduino.imports_['import_Pin'] = 'from machine import Pin';
-    Blockly.Arduino.imports_['import_ADC'] = 'from machine import ADC';
 
-    Blockly.Arduino.definitions_['define_motor1' + motor] = 'motor_' + motor + ' = PWM(Pin(' + pin + '))';
-    Blockly.Arduino.definitions_['define_motor2' + motor] = 'motor_' + motor + '.duty_u16(0)';
-
-    code = 'motor_' + motor + '.duty_u16(' + speed + ' * 650) \n';
-
+    if(motor == "A"){
+        pin1 = A1;
+        pin2 = A2;
+        
+        if(value == "forward"){
+            Blockly.Arduino.definitions_['define_motorA1'] = 'motor_' + motor + '1 = PWM(Pin(' + pin1 + '))\n'+
+                                                        'motor_' + motor + '2 = PWM(Pin(' + pin2 + '))\n';
+        code = 'motor_' + motor + '1.duty_u16(650 * ' + speed + ')\n'+
+               'motor_' + motor + '2.duty_u16(0)\n'; 
+        }
+        else if (value == "backward"){
+            Blockly.Arduino.definitions_['define_motorA2'] = 'motor_' + motor + '1 = PWM(Pin(' + pin1 + '))\n'+
+                                                        'motor_' + motor + '2 = PWM(Pin(' + pin2 + '))\n';
+        code = 'motor_' + motor + '1.duty_u16(0)\n'+
+               'motor_' + motor + '2.duty_u16(650 * ' + speed + ')\n';
+        }
+    }
+    
+    if(motor == "B"){
+        pin1 = B1;
+        pin2 = B2;
+        
+        if(value == "forward"){
+            Blockly.Arduino.definitions_['define_motorB1'] = 'motor_' + motor + '1 = PWM(Pin(' + pin1 + '))\n'+
+                                                        'motor_' + motor + '2 = PWM(Pin(' + pin2 + '))\n';
+        code = 'motor_' + motor + '1.duty_u16(650 * ' + speed + ')\n'+
+               'motor_' + motor + '2.duty_u16(0)\n'; 
+        }
+        else if (value == "backward"){
+            Blockly.Arduino.definitions_['define_motorB2'] = 'motor_' + motor + '1 = PWM(Pin(' + pin1 + '))\n'+
+                                                        'motor_' + motor + '2 = PWM(Pin(' + pin2 + '))\n';
+        code = 'motor_' + motor + '1.duty_u16(0)\n'+
+               'motor_' + motor + '2.duty_u16(650 * ' + speed + ')\n';
+        }
+    }
+    if(motor == "C"){
+        pin1 = C1;
+        pin2 = C2;
+        
+        if(value == "forward"){
+            Blockly.Arduino.definitions_['define_motorC1'] = 'motor_' + motor + '1 = PWM(Pin(' + pin1 + '))\n'+
+                                                        'motor_' + motor + '2 = PWM(Pin(' + pin2 + '))\n';
+        code = 'motor_' + motor + '1.duty_u16(650 * ' + speed + ')\n'+
+               'motor_' + motor + '2.duty_u16(0)\n'; 
+        }
+        else if (value == "backward"){
+            Blockly.Arduino.definitions_['define_motorC2'] = 'motor_' + motor + '1 = PWM(Pin(' + pin1 + '))\n'+
+                                                        'motor_' + motor + '2 = PWM(Pin(' + pin2 + '))\n';
+        code = 'motor_' + motor + '1.duty_u16(0)\n'+
+               'motor_' + motor + '2.duty_u16(650 * ' + speed + ')\n';
+        }
+    }
+    if(motor == "D"){
+        pin1 = D1;
+        pin2 = D2;
+        
+        if(value == "forward"){
+            Blockly.Arduino.definitions_['define_motorD1'] = 'motor_' + motor + '1 = PWM(Pin(' + pin1 + '))\n'+
+                                                        'motor_' + motor + '2 = PWM(Pin(' + pin2 + '))\n';
+        code = 'motor_' + motor + '1.duty_u16(650 * ' + speed + ')\n'+
+               'motor_' + motor + '2.duty_u16(0)\n'; 
+        }
+        else if (value == "backward"){
+            Blockly.Arduino.definitions_['define_motorD2'] = 'motor_' + motor + '1 = PWM(Pin(' + pin1 + '))\n'+
+                                                        'motor_' + motor + '2 = PWM(Pin(' + pin2 + '))\n';
+        code = 'motor_' + motor + '1.duty_u16(0)\n'+
+               'motor_' + motor + '2.duty_u16(650 * ' + speed + ' )\n';
+        }
+    }
+    
+    
     return code;
 };
 
@@ -585,3 +670,51 @@ Blockly.Arduino['isButtonPressed'] = function(block) {
 
     return [code, Blockly.Arduino.ORDER_NONE];
 };
+
+
+Blockly.Arduino['while_times'] = function (block) {
+
+    var value = block.getFieldValue('VALUE');
+    var times = Blockly.Arduino.valueToCode(block, 'TIMES', Blockly.Arduino.ORDER_NONE) || '0';
+    var branchCode = Blockly.Arduino.statementToCode(block, 'DO') ||
+        Blockly.Arduino.PASS;
+
+    Blockly.Arduino.imports_['import_Timer'] = 'from machine import Timer';
+    Blockly.Arduino.imports_['import_utime'] = 'import utime';
+
+    Blockly.Arduino.definitions_['define_while_times'] =
+        'currentTime = 0\n' +
+        'previousTime = 0\n' +
+        'elapsedTime = 0\n';
+
+    if (value == "s") {
+        var code =
+            "elapsedTime = 0\n" +
+            "previousTime = currentTime\n" +
+            "while elapsedTime < (" + times + "):\n" +
+            "    currentTime = utime.ticks_ms()\n" +
+            "    elapsedTime = (currentTime - previousTime) / 1000\n" +
+            branchCode + "\n";
+    }
+
+    else if (value == "ms") { 
+        var code =
+            "elapsedTime = 0\n" +
+            "previousTime = currentTime\n" +
+            "while elapsedTime < (" + times + "):\n" +
+            "    currentTime = utime.ticks_ms()\n" +
+            "    elapsedTime = currentTime - previousTime\n" +
+            branchCode + "\n";
+    }
+    return code;
+};
+
+Blockly.Arduino['variable_convert'] = function (block) {
+    var variable = block.getFieldValue('VARIABLE');
+    var value = Blockly.Arduino.valueToCode(block, 'VALUE', Blockly.Arduino.ORDER_NONE) || '0';
+    var code = '';
+
+    code = variable + '(' + value + ')';
+
+    return [code, Blockly.Arduino.ORDER_NONE];  
+}

@@ -391,7 +391,7 @@ Blockly.Blocks['control_forever'] = {
         .appendField("");
     this.setPreviousStatement(true);
     this.setNextStatement(false);
-    this.setColour("#ffab19");
+        this.setColour("#ffab19");
     this.setTooltip('');
     this.setHelpUrl('');
   }
@@ -412,7 +412,7 @@ Blockly.Blocks['range1'] = {
           .setAlign(Blockly.ALIGN_CENTRE);
 
     this.setOutput(true, null);
-    this.setColour("#ff8c1a");
+        this.setColour("#ffab19");
     this.setTooltip("");
     this.setHelpUrl("");
     this.setOutputShape(Blockly.OUTPUT_SHAPE_ROUND)
@@ -439,7 +439,7 @@ Blockly.Blocks['range2'] = {
           .setAlign(Blockly.ALIGN_CENTRE);
 
     this.setOutput(true, null);
-    this.setColour("#ff8c1a");
+        this.setColour("#ffab19");
     this.setTooltip("");
     this.setHelpUrl("");
     this.setOutputShape(Blockly.OUTPUT_SHAPE_ROUND)
@@ -457,7 +457,7 @@ Blockly.Blocks['control_wait'] = {
     this.setInputsInline(true)
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour("#ffab19");
+        this.setColour("#ffab19");
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -483,7 +483,7 @@ Blockly.Blocks['for_loop'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour("#ffab19");
+        this.setColour("#ffab19");
   }
 };
 
@@ -502,7 +502,7 @@ Blockly.Blocks['for_loop2'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour("#ffab19");
+        this.setColour("#ffab19");
   }
 };
 
@@ -517,7 +517,7 @@ Blockly.Blocks['while_loop'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour("#ffab19");
+        this.setColour("#ffab19");
   }
 };
 
@@ -528,7 +528,7 @@ Blockly.Blocks['break'] = {
     this.setInputsInline(true)
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour("#ffab19");
+        this.setColour("#ffab19");
  this.setTooltip("");
  this.setHelpUrl("");
   }

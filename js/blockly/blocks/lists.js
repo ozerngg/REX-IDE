@@ -166,7 +166,27 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
     "style": "list_blocks",
     "tooltip": "%{BKY_LISTS_LENGTH_TOOLTIP}",
     "helpUrl": "%{BKY_LISTS_LENGTH_HELPURL}"
-  }
+  },
+  {
+    "type": "split",
+    "message0": "%1 Split, by %2",
+    "args0": [{
+      "type": "input_value",
+      "name": "VALUE1",
+      "check": ["String"]
+    },
+    {
+      "type": "input_value",
+      "name": "VALUE2",
+      "check": ["String"]
+    }],
+
+    "output": "Array",
+    "outputShape": Blockly.OUTPUT_SHAPE_ROUND,
+    "style": "list_blocks",
+    "helpUrl": "",
+    "tooltip": ""
+    },
 ]);  // END JSON EXTRACT (Do not delete this comment.)
 
 Blockly.Blocks['lists_create_with'] = {

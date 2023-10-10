@@ -358,17 +358,20 @@ Blockly.Python['math_modulo'] = function(block) {
 };
 
 Blockly.Python['math_rescale'] = function (block) {
-    Blockly.Python.imports_['import_math'] = 'import math';
-    var argument0 = Blockly.Python.valueToCode(block, 'RESCALE',
-        Blockly.Python.ORDER_MULTIPLICATIVE) || '0';
-    var argument1 = Blockly.Python.valueToCode(block, 'FIRST',
-        Blockly.Python.ORDER_MULTIPLICATIVE) || '0';
-    var argument2 = Blockly.Python.valueToCode(block, 'SECOND',
-        Blockly.Python.ORDER_MULTIPLICATIVE) || '0';
-    var argument3 = Blockly.Python.valueToCode(block, 'THIRD',
-        Blockly.Python.ORDER_MULTIPLICATIVE) || '0';
-    var code = 'round(((( ' + argument0 + ' ) + ( ' + argument1 + ' )) * ( ' + argument2 + ' )) / ( ' + argument3 + ' )) ';
-    return [code, Blockly.Python.ORDER_MULTIPLICATIVE];
+  Blockly.Python.imports_['import_math'] = 'import math';
+  var input = Blockly.Python.valueToCode(block, 'INPUT',
+      Blockly.Python.ORDER_NONE) || '0';
+  var inmin = Blockly.Python.valueToCode(block, 'INMIN',
+      Blockly.Python.ORDER_NONE) || '0';
+  var inmax = Blockly.Python.valueToCode(block, 'INMAX',
+      Blockly.Python.ORDER_NONE) || '0';
+  var outmin = Blockly.Python.valueToCode(block, 'OUTMIN',
+      Blockly.Python.ORDER_NONE) || '0';
+  var outmax = Blockly.Python.valueToCode(block, 'OUTMAX',
+    Blockly.Python.ORDER_NONE) || '0';
+
+  var code = 'round( '+ input +' - '+ inmin +' ) * ( '+ outmax +' - '+ outmin +' ) / ( '+ inmax +' - '+ inmin +' ) + '+ outmin;
+  return [code, Blockly.Python.ORDER_NONE];
 };
 
 Blockly.Python['math_constrain'] = function(block) {

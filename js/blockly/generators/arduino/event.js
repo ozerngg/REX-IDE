@@ -39,3 +39,14 @@ Blockly.Arduino['event_whenplayclicked'] = function(block) {
   return code;
 };
 
+Blockly.Arduino['event_whenflagclicked'] = function(block) {
+  // TODO: Assemble JavaScript into code variable.
+  var code = "";
+  
+  if(editorType == "Simulator")
+  {
+      code = "PicoBricksStart();\n";
+  }
+
+  return code;
+};

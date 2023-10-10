@@ -87,61 +87,6 @@ Blockly.JavaScript['controls_if'] = function(block) {
 
 Blockly.JavaScript['controls_ifelse'] = Blockly.JavaScript['controls_if'];
 
-
-Blockly.JavaScript['controls_switch'] = function (block) {
-    var n = 0;
-    var code = '', branchCode, conditionCode;
-    if (Blockly.JavaScript.STATEMENT_PREFIX) {
-        // Automatic prefix insertion is switched off for this block.  Add manually.
-        code += Blockly.JavaScript.injectId(Blockly.JavaScript.STATEMENT_PREFIX,
-            block);
-    }
-    do {
-        conditionCode = Blockly.JavaScript.valueToCode(block, 'SWITCH' + n,
-            Blockly.JavaScript.ORDER_NONE) || 'false';
-        branchCode = Blockly.JavaScript.statementToCode(block, 'DO' + n);
-
-        if (Blockly.JavaScript.STATEMENT_SUFFIX) {
-            branchCode = Blockly.JavaScript.prefixLines(
-                Blockly.JavaScript.injectId(Blockly.JavaScript.STATEMENT_SUFFIX,
-                    block), Blockly.JavaScript.INDENT) + branchCode;
-        }
-
-        //branchCode = replaceAll(branchCode, "d-d", "");
-        branchCode = replaceAll(branchCode, "$-$", "");
-
-        code += (n > 0 ? ' \ndefault ' : '') +
-            '   if (' + conditionCode + ')\n' +
-            '   {loopstep();\n' + branchCode + '\n' +
-            '   }\n';
-        ++n;
-    } while (block.getInput('SWITCH' + n));
-
-    if (block.getInput('DEFAULT') || Blockly.JavaScript.STATEMENT_SUFFIX) {
-        branchCode = Blockly.JavaScript.statementToCode(block, 'DEFAULT');
-        if (Blockly.JavaScript.STATEMENT_SUFFIX) {
-            branchCode = Blockly.JavaScript.prefixLines(
-                Blockly.JavaScript.injectId(Blockly.JavaScript.STATEMENT_SUFFIX,
-                    block), Blockly.JavaScript.INDENT) + branchCode;
-        }
-
-        //branchCode = replaceAll(branchCode, "d-d", "");
-        branchCode = replaceAll(branchCode, "$-$", "");
-
-        code += '   default\n' +
-            '   {loopend();\n' + branchCode +
-            '   }\n';
-    }
-    else {
-        code += '   default\n' +
-            '   {loopend();' + '\n' +
-            '   }\n';
-
-    }
-
-    return code + '\n';
-};
-
 Blockly.JavaScript['logic_compare'] = function(block) {
   // Comparison operator.
   var OPERATORS = {

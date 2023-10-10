@@ -66,40 +66,6 @@ Blockly.Arduino['controls_if'] = function(block) {
 
 Blockly.Arduino['controls_ifelse'] = Blockly.Arduino['controls_if'];
 
-Blockly.Arduino['controls_switch'] = function (block) {
-    var n = 0;
-    var code = '', branchCode, conditionCode;
-    if (Blockly.Arduino.STATEMENT_PREFIX) {
-        // Automatic prefix insertion is switched off for this block.  Add manually.
-        code += Blockly.Arduino.injectId(Blockly.Arduino.STATEMENT_PREFIX, block);
-    }
-    do {
-        conditionCode = Blockly.Arduino.valueToCode(block, 'SWITCH' + n,
-            Blockly.Arduino.ORDER_NONE) || 'False';
-        branchCode = Blockly.Arduino.statementToCode(block, 'DO' + n) ||
-            Blockly.Arduino.PASS;
-        if (Blockly.Arduino.STATEMENT_SUFFIX) {
-            branchCode = Blockly.Arduino.prefixLines(
-                Blockly.Arduino.injectId(Blockly.Arduino.STATEMENT_SUFFIX, block),
-                Blockly.Arduino.INDENT) + branchCode;
-        }
-        code += (n == 0 ? 'switch ' : 'case ') + conditionCode + ':\n' + branchCode;
-        ++n;
-    } while (block.getInput('SWITCH' + n));
-
-    if (block.getInput('DEFAULT') || Blockly.Arduino.STATEMENT_SUFFIX) {
-        branchCode = Blockly.Arduino.statementToCode(block, 'DEFAULT') ||
-            Blockly.Arduino.PASS;
-        if (Blockly.Arduino.STATEMENT_SUFFIX) {
-            branchCode = Blockly.Arduino.prefixLines(
-                Blockly.Arduino.injectId(Blockly.Arduino.STATEMENT_SUFFIX, block),
-                Blockly.Arduino.INDENT) + branchCode;
-        }
-        code += 'default:\n' + branchCode;
-    }
-    return code;
-};
-
 Blockly.Arduino['logic_compare'] = function(block) {
   // Comparison operator.
   var OPERATORS = {

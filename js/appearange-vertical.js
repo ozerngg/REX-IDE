@@ -324,14 +324,14 @@ function findwhenplayclickedID(xml) {
   return id;
 }
 
-var title1 = "Welcome to REX8 Code Editor.";
+var title1 = "Welcome to Rex8 Code Editor.";
 var intro1 = "This is a Block and Python based programming editor.";
 
 var title2 = "Workspace";
 var intro2 = "You can write your program with blocks.";
 
 var title3 = "Connect Button";
-var intro3 = "Connect REX Main Board via Serial Port.";
+var intro3 = "Connect REX Main Board Board via Serial Port.";
 
 var title4 = "Run Button";
 var intro4 = "Runs your code on REX Main Board.";

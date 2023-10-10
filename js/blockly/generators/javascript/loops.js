@@ -203,6 +203,7 @@ Blockly.JavaScript['controls_flow_statements'] = function(block) {
   throw Error('Unknown flow statement.');
 };
 
+
 Blockly.JavaScript['control_wait'] = function(block) {
   // TODO: Assemble JavaScript into code variable.
   var duration = Blockly.JavaScript.valueToCode(block, 'DURATION', Blockly.JavaScript.ORDER_ASSIGNMENT) || '0';

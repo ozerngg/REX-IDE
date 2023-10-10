@@ -38,29 +38,6 @@ Blockly.JavaScript['Robotistan_Start'] = function(block) {
     return code;
 }
 
-Blockly.JavaScript['writeTextScreen'] = function(block) {
-
-    var writeValue =  Blockly.JavaScript.valueToCode(block, 'WriteValue', Blockly.JavaScript.ORDER_ASSIGNMENT);
-    var xPos =  Blockly.JavaScript.valueToCode(block, 'XPos', Blockly.JavaScript.ORDER_ASSIGNMENT) || '0';
-    var yPos =  Blockly.JavaScript.valueToCode(block, 'YPos', Blockly.JavaScript.ORDER_ASSIGNMENT) || '0';
-
-    var code = "";
-    code = 'writeTextScreen(' + xPos + ', ' + yPos + ', ' + writeValue + ');\n';
-
-    return code;
-};
-
-Blockly.JavaScript['showScreen'] = function(block) {
-    var code = 'showScreen();\n';
-
-    return code;
-};
-
-Blockly.JavaScript['clearScreen'] = function(block) {
-    var code = 'clearScreen();\n';
-
-    return code;
-};
 
 Blockly.JavaScript['print'] = function(block) {
 
@@ -219,64 +196,3 @@ Blockly.JavaScript['dcMotor'] = function(block) {
 
     return code;
 };
-
-Blockly.JavaScript['neoPixelColour'] = function(block) {
-
-    var colourValue = Blockly.JavaScript.valueToCode(block, 'ColourValue', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = "";
-    var pin = NeoPixelPin;
-
-    var hexRed, hexGreen, hexBlue;
-    var red, green, blue;
-    var colourValueTemp = colourValue.replace("#", "").replace("'", "").replace("\"", "");;
-
-    hexRed = colourValueTemp.substring(0, 2);
-    hexGreen = colourValueTemp.substring(2, 4);
-    hexBlue = colourValueTemp.substring(4, 6);
-
-    red = parseInt(hexRed, 16);
-    green = parseInt(hexGreen, 16);
-    blue = parseInt(hexBlue, 16);
-
-    code = 'neoPixelColour(' + colourValue + ');\n';
-
-    return code;
-};
-
-Blockly.JavaScript['neoPixelColourRGB'] = function(block) {
-
-    var code = "";
-    var pin = NeoPixelPin;
-
-    var red = Blockly.JavaScript.valueToCode(block, 'RED', Blockly.JavaScript.ORDER_ASSIGNMENT) || '0';
-    var green =  Blockly.JavaScript.valueToCode(block, 'GREEN', Blockly.JavaScript.ORDER_ASSIGNMENT) || '0';
-    var blue = Blockly.JavaScript.valueToCode(block, 'BLUE', Blockly.JavaScript.ORDER_ASSIGNMENT) || '0';
-
-    var redHex = parseInt(red).toString(16);
-    var greenHex = parseInt(green).toString(16);
-    var blueHex = parseInt(blue).toString(16);
-
-    if(redHex.length == 1)
-       redHex = "0" + redHex; 
-  
-    if(greenHex.length == 1)
-       greenHex = "0" + greenHex; 
-
-    if(blueHex.length == 1)
-       blueHex = "0" + blueHex; 
-
-    var colourValue = "#" + redHex + greenHex + blueHex;
-    code = 'neoPixelColour("' + colourValue + '");\n';
-
-    return code;
-};
-
-Blockly.JavaScript['neoPixelClear'] = function(block) {
-
-    var code = "";
-    var pin = NeoPixelPin;
-
-    code = 'neoPixelClear();\n';
-
-    return code;
-}

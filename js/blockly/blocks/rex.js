@@ -20,7 +20,7 @@
 
 'use strict';
 
-goog.provide('Blockly.Blocks.rexblocks');
+goog.provide('Blockly.Blocks.picobricks');
 
 goog.require('Blockly.Blocks');
 goog.require('Blockly.Colours');
@@ -373,7 +373,9 @@ Blockly.Blocks['dcMotor'] = {
         .appendField("DC Motor")
 
     this.appendDummyInput()
-        .appendField(new Blockly.FieldDropdown([["M1", "1"], ["M2", "2"], ["M3", "3"], ["M4", "4"]]), "MOTOR");
+        .appendField(new Blockly.FieldDropdown([["M1", "A"], ["M2", "B"], ["M3", "C"], ["M4", "D"]]), "MOTOR");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([["Forward", "forward"], ["Backward", "backward"]]), "VALUE");
         
     this.appendValueInput("SPEED")
           .appendField("Speed")
@@ -510,5 +512,28 @@ Blockly.Blocks['while_times'] = {
       this.setColour("#ffab19");
       this.setTooltip('');
       this.setHelpUrl('');
+  }
+};
+
+Blockly.Blocks['variable_convert'] = {
+  init: function () {
+
+      this.appendDummyInput()
+          .appendField(new Blockly.FieldDropdown([
+            ["int", "int"], 
+            ["string", "str"], 
+            ["float", "float"], 
+          ]), 
+          "VARIABLE");
+
+      this.appendValueInput("VALUE")
+          .setCheck("Number","String","Array")
+          .setAlign(Blockly.ALIGN_CENTRE)
+
+      this.setColour("#19b5fe");
+      this.setTooltip("");
+      this.setHelpUrl("");
+      this.setOutput(true, null);
+      this.setOutputShape(Blockly.OUTPUT_SHAPE_ROUND)
   }
 };
