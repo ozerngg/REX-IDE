@@ -65,8 +65,12 @@
                         <span>View source code</span>
                     </div>
                 </a>
+                
+    
             </div>
+
         </div>
+        
         </div>
 
     </div>
@@ -79,7 +83,7 @@
             the components that are used in the REX 8 in 1 set to the circuit with a cable
         </p >
         <div class="mainboard">
-            <img src="img/rex_main.gif" alt="jr" class="responsive" onclick="GotoHorizontal()" style="cursor: pointer; margin: 4%;">
+            <img src="img/rex_main.gif" alt="jr" class="responsive" onclick="GotoHorizontal()" style="cursor: pointer;">
         </div>
     </div>   
     <div class="icons" style="position: relative; display: flex; flex-direction: column; justify-content: center; align-items: center;">
@@ -93,7 +97,10 @@
         <div style="
         border-radius: 5px;">
             <h2>Quick Start Guide</h2>
-        
+        <p>Pico Bricks Dev & Learning Board designed for great flexibility! 
+             
+            With its Pico Bricks IDE + Simulator, you can use both, block coding and code editor feature!
+        </p>
     </div></div>
  
   
@@ -101,22 +108,22 @@
 <!--kapak end-->
     <div class="editor">
         <div class="jr card">
-            <img src="img/armbot.png" alt="armbot" class="responsive"onclick="window.location.href='rex/armbot.html'" style="cursor: pointer;">
+            <img src="img/armbot.png" alt="jr" class="responsive"onclick="window.location.href='rex/armbot.html'" style="cursor: pointer;">
             <div style="border-radius: 5px;">
                 <h2>Armbot</h2>
             <p>ArmBot is a REX robot that allows the objects around it to be moved from one point to another point by remote control thanks to its robot arm. The robot arm on ArmBot consists of 3 servo motors. ArmBot, which can move in 4 different axes, up, down, right and left, can easily reach even objects in hard-to-reach areas with its movement. </p>
         </div></div>
         <div class="blok card">
-            <img src="img/sonicbot.png" alt="sonicbot" class="responsive"onclick="window.location.href='rex/sonicbot.html'" style="cursor: pointer;">
+            <img src="img/sonicbot.png" alt="blockly" class="responsive"onclick="window.location.href='rex/sonicbot.html'" style="cursor: pointer;">
             <div style="border-radius: 5px;">                <h2>Sonicbot</h2>
             <p>SonicBot detects objects by emitting sound waves around it thanks to the distance sensor on it and can perform different functions by using its mechanical properties according to the values it detects. You can avoid obstacles by using SonicBot. You can use SonicBot for tasks that require you to detect objects in the environment. </p>
         </div></div>
         <div class="py card">
-            <img src="img/balancebot.png" alt="balancebot" class="responsive" onclick="window.location.href='rex/balancebot.html'" style="cursor: pointer;">
+            <img src="img/balancebot.png" alt="python" class="responsive" onclick="window.location.href='rex/balancebot.html'" style="cursor: pointer;">
             <div style="border-radius: 5px;">                <h2>Balancebot</h2>
 <p>BalanceBot is a special robot that can remain balanced despite physical interventions thanks to the acceleration sensor on the REX board. You can use BalanceBot in situations where you need to carry objects in balance.</p>        </div></div>
         <div class="sim card">
-            <img src="img/roverbot.png" alt="roverbot" class="responsive" onclick="window.location.href='rex/roverbot.html'"style="cursor: pointer;">
+            <img src="img/roverbot.png" alt="simulator" class="responsive" onclick="window.location.href='rex/roverbot.html'"style="cursor: pointer;">
             <div style="border-radius: 5px;">   <h2 >Roverbot</h2>
             <p> RoverBot is a REX robot that allows you to move comfortably in difficult terrain conditions thanks to its tracked structure. Like other REX 8in1 robots, you can control RoverBot remotely if you want, or you can make it move autonomously with special coding.
             </p>
@@ -125,13 +132,13 @@
     </div>
     <div class="editor">
         <div class="jr card">
-            <img src="img/trackerbot.png" alt="trackerbot" class="responsive" onclick="window.location.href='rex/trackerbot.html'" style="cursor: pointer;">
+            <img src="img/trackerbot.png" alt="jr" class="responsive" onclick="window.location.href='rex/trackerbot.html'" style="cursor: pointer;">
             <div style="border-radius: 5px;"> <h2 >Trackerbot</h2>
             <p >TrackerBot emits infrared lights thanks to the line tracking sensor and follows the black lines in the environment. By using the mechanical features of TrackerBot on the path we have created with lines, we can make it perform the tasks we want autonomously. We can also change the colour TrackerBot follows by modifying the code.
             </p>
         </div></div>
         <div class="blok card">
-            <img src="img/wibot.png" alt="wibot" class="responsive" onclick="window.location.href='rex/wibot.html'" style="cursor: pointer;">
+            <img src="img/wibot.png" alt="blockly" class="responsive" onclick="window.location.href='rex/wibot.html'" style="cursor: pointer;">
             <div style="
             border-radius: 5px;">
                 <h2>Wibot</h2>
@@ -141,7 +148,7 @@
             </p>
         </div></div>
         <div class="py card">
-            <img src="img/sumobot.png" onclick="window.location.href='rex/sumobot.html'" alt="sumobot" class="responsive" style="cursor: pointer;">
+            <img src="img/sumobot.png" onclick="window.location.href='rex/sumobot.html'" alt="python" class="responsive" style="cursor: pointer;">
             <div style="border-radius: 5px;">
                 <h2>Sumobot</h2>
             <p>SumoBot detects other objects on the track thanks to the HC-SR04 distance sensor and the line tracking sensor. Thanks to the line tracking sensor, SumoBot detects whether objects are on the track and thus moves them off the track.
@@ -183,6 +190,7 @@
         } else {
             $("#goTop").show();
             console.log("show");
+
         }
     }
     updateGoTopVisibility();
